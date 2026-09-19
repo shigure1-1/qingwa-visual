@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ServiceLocalNav } from "@/components/service-local-nav";
 import { ServiceHeroVideo } from "@/components/tourism-hero-video";
 import { projects, type Service, type ServiceItem } from "@/content/site";
+import { mediaUrl } from "@/lib/media-url";
 
 type ServicePageProps = {
   service: Service;
@@ -28,14 +29,14 @@ const serviceHeroVideos: Record<string, {
     metaLabel: "DIGITAL TOURISM / SHOWREEL",
     posterAlt: "数字文旅项目影片画面",
     posterSrc: "/services/digital-tourism/media/digital-tourism-showreel-poster.jpg",
-    videoSrc: "/services/digital-tourism/media/digital-tourism-showreel.mp4",
+    videoSrc: mediaUrl("/services/digital-tourism/media/digital-tourism-showreel.mp4"),
   },
   "digital-film": {
     ariaLabel: "晴蛙视觉数字影视作品影片",
     metaLabel: "DIGITAL FILM / SHOWREEL",
     posterAlt: "数字影视广告作品影片画面",
     posterSrc: "/services/digital-film/media/digital-film-showreel-poster.jpg",
-    videoSrc: "/services/digital-film/media/digital-film-showreel.mp4",
+    videoSrc: mediaUrl("/services/digital-film/media/digital-film-showreel.mp4"),
   },
 };
 

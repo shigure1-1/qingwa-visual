@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { mediaUrl } from "@/lib/media-url";
 
 const desktopPoster = "/home/qingwa-company-showreel-poster.jpg";
 const mobilePoster = "/home/qingwa-company-showreel-poster-mobile.jpg";
@@ -118,10 +119,10 @@ export function CompanyFilm() {
         >
           <source
             media="(max-width: 900px)"
-            src="/home/qingwa-company-showreel-2024-mobile.mp4"
+            src={mediaUrl("/home/qingwa-company-showreel-2024-mobile.mp4")}
             type="video/mp4"
           />
-          <source src="/home/qingwa-company-showreel-2024.mp4" type="video/mp4" />
+          <source src={mediaUrl("/home/qingwa-company-showreel-2024.mp4")} type="video/mp4" />
           您的浏览器不支持 HTML 视频播放。
         </video>
       </div>

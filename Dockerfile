@@ -9,6 +9,8 @@ FROM deps AS builder
 WORKDIR /app
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
+ARG NEXT_PUBLIC_MEDIA_BASE_URL=https://ccc-d9gvvjq7l297a75c4.api.tcloudbasegateway.com/v1/storages/object/public/qingwa-media
+ENV NEXT_PUBLIC_MEDIA_BASE_URL=$NEXT_PUBLIC_MEDIA_BASE_URL
 RUN npm run build
 
 FROM node:22-bookworm-slim AS runner
@@ -16,6 +18,7 @@ FROM node:22-bookworm-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_PUBLIC_MEDIA_BASE_URL=https://ccc-d9gvvjq7l297a75c4.api.tcloudbasegateway.com/v1/storages/object/public/qingwa-media
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
