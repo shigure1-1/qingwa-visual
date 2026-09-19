@@ -1,0 +1,34 @@
+{
+  "source": "Y:/1.制作项目/2026.08.25公司网站制作/0-1主页界面/晴蛙视觉-2023Showreel-2024.08-裁.mp4",
+  "sourceSha256": "ea2a999c0717895d9f97e0e4bb01f2d61142bf65dffb716d500129d3e0f691a2",
+  "assetSha256": "8f24fe2876f7a9488e384fade42a1ef0279d85a86bb91ad53c0cc29ac4c9c5d5",
+  "asset": "qingwa-company-showreel-2024.mp4",
+  "poster": "qingwa-company-showreel-poster.jpg",
+  "posterSource": "首帧截取：00:00:03",
+  "durationSeconds": 338.496,
+  "video": {
+    "codec": "h264",
+    "profile": "High",
+    "level": 41,
+    "width": 1920,
+    "height": 816,
+    "frameRate": "25/1",
+    "pixelFormat": "yuv420p",
+    "bitRate": 4926583
+  },
+  "audio": {
+    "codec": "aac",
+    "profile": "LC",
+    "sampleRate": 48000,
+    "channels": 2,
+    "bitRate": 194852
+  },
+  "subtitleStreams": 0,
+  "notes": [
+    "原始制作素材保持不变。",
+    "网页播放器使用用户主动播放，不自动播放音频。",
+    "正式部署前需确认片中客户画面、人物肖像、品牌标识和音乐的官网公开播放授权。",
+    "首页使用 40:17 裁切版，并保持播放框与素材比例一致，避免黑边或画面裁切。",
+    "网页版本约 207 MiB，已使用 H.264/AAC 重新编码并将 MP4 索引前置；正式部署仍建议使用支持 HTTPS、HTTP Range 和 CDN 的视频或对象存储。"
+  ]
+}

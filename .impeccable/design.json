@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-25T00:00:00.000Z",
+  "title": "Design System: 晴蛙视觉",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "观测黑", "canonical": "#070908", "purpose": "页头、首页英雄区、案例英雄区和页脚。" },
+      "ink-soft": { "role": "neutral", "displayName": "软黑", "canonical": "#101511", "purpose": "服务、关于和合作内容中的深色背景。" },
+      "paper": { "role": "neutral", "displayName": "纸白", "canonical": "#f4f3ee", "purpose": "阅读区、筛选区和正文内容面。" },
+      "white": { "role": "neutral", "displayName": "白", "canonical": "#ffffff", "purpose": "深色背景上的主文字和折面标志。" },
+      "teal": { "role": "primary", "displayName": "晴蛙青", "canonical": "#52b8bc", "purpose": "品牌标记、交互动作、校准线和主色场。" },
+      "teal-deep": { "role": "primary", "displayName": "深晴蛙青", "canonical": "#287b80", "purpose": "案例声明带和浅色区域中的深色强调。" },
+      "coral": { "role": "secondary", "displayName": "暖珊瑚", "canonical": "#ff6d5a", "purpose": "光谱偏移、错误状态和可见焦点环。" },
+      "acid": { "role": "tertiary", "displayName": "酸绿", "canonical": "#d8ff43", "purpose": "AIGC 项目和高能频谱构图中的受控强调。" },
+      "muted-dark": { "role": "neutral", "displayName": "暗灰绿", "canonical": "#9ba9a2", "purpose": "深色背景上的辅助文字。" },
+      "muted-light": { "role": "neutral", "displayName": "浅灰绿", "canonical": "#55615c", "purpose": "纸白背景上的辅助文字。" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "中文显示", "purpose": "首页主张和主视觉标题。" },
+      "body": { "displayName": "中文正文", "purpose": "说明、表单和案例正文。" },
+      "label": { "displayName": "Archivo 校准标签", "purpose": "英文标题、类别、序号和测量信息。" }
+    },
+    "shadows": [
+      { "name": "mark-depth", "value": "drop-shadow(0 34px 80px rgba(0,0,0,.48))", "purpose": "首页主标志从观测场中浮出。" },
+      { "name": "optical-glow", "value": "inset 24px -14px 80px rgba(82,184,188,.07)", "purpose": "光学圆环内部的弱色场。" }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "折面、线路和箭头的空间响应。" },
+      { "name": "pointer-spring", "value": "stiffness 80 / damping 18 / mass 0.7", "purpose": "指针驱动 Logo 的有限二维偏移。" }
+    ],
+    "breakpoints": [
+      { "name": "mobile-nav", "value": "1180px" },
+      { "name": "compact-mobile", "value": "580px" },
+      { "name": "short-desktop", "value": "max-height: 800px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "深色方正主按钮，承载合作表单提交。",
+      "html": "<button class=\"ds-primary\">生成合作简报</button>",
+      "css": ".ds-primary { color: #fff; background: #070908; border: 0; border-radius: 0; padding: .8rem 1.5rem; min-height: 3.8rem; font-family: 'Noto Sans SC Variable', sans-serif; font-weight: 650; transition: color .2s, background .2s; } .ds-primary:hover { color: #070908; background: #52b8bc; } .ds-primary:focus-visible { outline: 3px solid #ff6d5a; outline-offset: 4px; }"
+    },
+    {
+      "name": "Hero Text Link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "无填充下划线行动链接，配合箭头表达继续探索。",
+      "html": "<a class=\"ds-text-link\" href=\"/work\">查看作品 <span aria-hidden=\"true\">↘</span></a>",
+      "css": ".ds-text-link { color: #fff; display: inline-flex; align-items: center; gap: 2.2rem; min-height: 3.5rem; border-bottom: 1px solid #52b8bc; font-weight: 650; text-decoration: none; } .ds-text-link:hover span { transform: translate(.25rem, .25rem); } .ds-text-link:focus-visible { outline: 3px solid #ff6d5a; outline-offset: 4px; } .ds-text-link span { transition: transform .3s cubic-bezier(.16,1,.3,1); }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "button-filter",
+      "description": "作品归档的分类筛选状态。",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"true\">数字空间</button>",
+      "css": ".ds-chip { color: #55615c; background: transparent; border: 1px solid rgba(7,9,8,.18); border-radius: 999px; padding: .55rem 1.15rem; min-height: 2.6rem; } .ds-chip[aria-pressed=\"true\"], .ds-chip:hover { color: #fff; background: #070908; border-color: #070908; } .ds-chip:focus-visible { outline: 3px solid #ff6d5a; outline-offset: 4px; }"
+    },
+    {
+      "name": "Brief Field",
+      "kind": "input",
+      "refersTo": "form-field",
+      "description": "纸白背景中的底边线表单字段。",
+      "html": "<label class=\"ds-field\"><span>你的称呼 *</span><input placeholder=\"填写称呼\" /></label>",
+      "css": ".ds-field { display: grid; gap: .65rem; padding: 1.3rem 0; border-bottom: 1px solid rgba(7,9,8,.18); } .ds-field span { color: #55615c; font-size: .75rem; } .ds-field input { color: #070908; background: transparent; border: 0; border-radius: 0; min-height: 2.8rem; padding: 0; font: 1.05rem 'Noto Sans SC Variable', sans-serif; } .ds-field input:focus-visible { outline: 3px solid #ff6d5a; outline-offset: 4px; }"
+    },
+    {
+      "name": "Mobile Accordion Navigation",
+      "kind": "nav",
+      "refersTo": "navigation-mobile",
+      "description": "1180px 以下使用可滚动的黑色全屏导航，业务栏目以一次展开一组的手风琴显示独立服务页链接。",
+      "html": "<nav class=\"ds-mobile-nav\"><div><a href=\"/services/digital-space\"><span>02</span>数字空间</a><button aria-expanded=\"true\">⌄</button></div><div class=\"ds-mobile-submenu\"><a href=\"/services/digital-space/exhibition\">展厅展馆</a></div></nav>",
+      "css": ".ds-mobile-nav { overflow-y: auto; color: #fff; background: #070908; } .ds-mobile-nav > div { border-top: 1px solid rgba(255,255,255,.16); } .ds-mobile-nav a { color: inherit; text-decoration: none; } .ds-mobile-nav span { color: #52b8bc; font: .58rem 'Archivo Variable', sans-serif; } .ds-mobile-submenu { padding-left: 1.6rem; color: #9ba9a2; } .ds-mobile-nav :focus-visible { outline: 3px solid #ff6d5a; outline-offset: 4px; }"
+    },
+    {
+      "name": "Project Strip",
+      "kind": "card",
+      "refersTo": "project-strip",
+      "description": "全宽代表项目入口，画册案例图和元数据面并列，低强度折面响应不遮挡项目证据。",
+      "html": "<a class=\"ds-project-strip\" href=\"/work/smart-geospatial-exhibition-hall\"><div class=\"ds-art ds-art-image\"></div><div class=\"ds-copy\"><strong>智慧地信产业展厅</strong><span>SMART GEOSPATIAL EXHIBITION HALL</span></div></a>",
+      "css": ".ds-project-strip { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(280px,.65fr); min-height: 350px; color: #070908; background: #fff; text-decoration: none; } .ds-art { background: #52b8bc; } .ds-art-image { background: linear-gradient(rgba(7,9,8,.08),rgba(7,9,8,.2)), url('/work/space-hanjie.jpg') center/cover; } .ds-copy { display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; background: #f4f3ee; } .ds-project-strip strong { font-size: 2.2rem; line-height: 1; } .ds-project-strip:focus-visible { outline: 3px solid #ff6d5a; outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "光学折面",
+    "overview": "晴蛙视觉把改变观看方式变成可移动、可折射、可拆解的视觉镜头。画册案例图提供项目证据，黑色观测场、纸白内容面、晴蛙青识别色与低强度折面覆盖构成全站共同语法。",
+    "keyCharacteristics": ["真实项目图优先", "全宽分区与硬边界", "中文显示与 Archivo 校准标签", "动效可选且尊重 reduced-motion"],
+    "rules": [
+      { "name": "The Optical Rarity Rule", "body": "晴蛙青负责识别和行动，珊瑚与酸绿只在需要产生折射、频谱或概念区别时出现。", "section": "colors" },
+      { "name": "The Flat-By-Default Rule", "body": "页面分区保持平面与硬边，深度必须来自视觉机制，而不是装饰性卡片效果。", "section": "elevation" }
+    ],
+    "dos": ["Do 让首屏直接展示标志、主张和查看作品行动。", "Do 让画册项目图成为主要证据，并将视觉探索清楚标记。", "Do 在商业发布前复核公司概览、资质和联系渠道。"],
+    "donts": ["Don't 把视觉探索写成真实客户项目或业绩证明。", "Don't 为画册案例补写未经确认的成果、预算或客户评价。", "Don't 引入通用营销英雄、卡片嵌卡片或 stock 风格摄影。"]
+  }
+}

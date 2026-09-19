@@ -1,0 +1,6 @@
+{
+  "source": "http://127.0.0.1:3000/",
+  "viewport": "1280x720",
+  "note": "Desktop navigation review after expanded menu implementation.",
+  "prompt": "Origin: http://127.0.0.1:3000/. Captured from the current local website with the in-app browser after navigation regression testing. No generative model used."
+}

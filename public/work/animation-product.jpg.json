@@ -1,0 +1,12 @@
+{
+  "source": "Y:/1.制作项目/2026.08.25公司网站制作/晴蛙视觉科技-画册（电脑版）2026.08.20-01.pptx",
+  "sourceSlide": 14,
+  "crop": {
+    "left": 350,
+    "top": 230,
+    "width": 2100,
+    "height": 1200
+  },
+  "note": "Sourced from a user-provided company booklet slide; cropped locally with Sharp. No generative model used.",
+  "prompt": "Origin: Y:/1.制作项目/2026.08.25公司网站制作/晴蛙视觉科技-画册（电脑版）2026.08.20-01.pptx; source slide 14. Sourced from a user-provided company booklet slide; cropped locally with Sharp. No generative model used. Crop: {\"left\":350,\"top\":230,\"width\":2100,\"height\":1200}."
+}

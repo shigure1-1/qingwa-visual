@@ -1,0 +1,29 @@
+{
+  "source": "Y:/1.制作项目/2026.08.25公司网站制作/0-1主页界面/晴蛙视觉-2023Showreel-2024.08.26.mp4",
+  "sourceSha256": "5cca6624886eea6549e6d92a047f1c536258e3ec50dc9ce1aa9da1de6ae06f26",
+  "assetSha256": "1477b33626aec5e435d281c2aef844e4c232cde2b2be38376b88d03ffd109682",
+  "asset": "qingwa-company-showreel-2024-mobile.mp4",
+  "poster": "qingwa-company-showreel-poster-mobile.jpg",
+  "posterSource": "首帧截取：00:00:03",
+  "durationSeconds": 338.496,
+  "video": {
+    "codec": "h264",
+    "profile": "High",
+    "width": 1280,
+    "height": 720,
+    "frameRate": "25/1",
+    "pixelFormat": "yuv420p",
+    "bitRate": 2230615
+  },
+  "audio": {
+    "codec": "aac",
+    "sampleRate": 48000,
+    "channels": 2,
+    "bitRate": 129763
+  },
+  "notes": [
+    "移动端使用此前的 16:9 首页宣传片内容。",
+    "网页版本缩放至 1280x720，并使用 H.264/AAC 重新编码和 MP4 索引前置。",
+    "原始制作素材保持不变。"
+  ]
+}
