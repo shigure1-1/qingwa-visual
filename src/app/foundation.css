@@ -312,6 +312,7 @@ h1, h2, h3, p { margin: 0; }
   gap: 0;
   color: rgba(255,255,255,.92);
   font-size: clamp(.78rem, 1.18vw, 1.75rem);
+  font-weight: 400;
   line-height: 1.35;
   white-space: nowrap;
 }
