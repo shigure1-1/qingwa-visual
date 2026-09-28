@@ -93,7 +93,7 @@ export function SiteFooter() {
 
       <div className="footer-meta">
         <span>晴蛙视觉</span>
-        <span>武汉 · 深圳 · 上海 · 北京 · 广州 · 昆明</span>
+        <span>武汉 · 深圳 · 上海 · 广州 · 昆明</span>
         <span>{locations.length} 个联系点</span>
         <span>© {new Date().getFullYear()}</span>
       </div>

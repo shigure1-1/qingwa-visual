@@ -265,16 +265,24 @@ export function ServiceFilmRails({ service }: ServiceFilmRailsProps) {
   const headingId = `service-film-rails-${service.slug}-heading`;
 
   return (
-    <section className="service-film-rails" data-service={service.slug} aria-labelledby={headingId}>
-      <div className="service-film-rails-heading">
-        <div>
-          <span>{service.englishTitle} / SERVICE ARCHIVES</span>
-          <h2 id={headingId}>
-            {isAnimation ? "从一帧开始，进入三种动画表达。" : "从一帧开始，分别进入三种影像叙事。"}
-          </h2>
+    <section
+      className={`service-film-rails${isAnimation ? "" : " service-film-rails-without-heading"}`}
+      data-service={service.slug}
+      aria-labelledby={headingId}
+    >
+      {isAnimation ? (
+        <div className="service-film-rails-heading">
+          <div>
+            <span>{service.englishTitle} / SERVICE ARCHIVES</span>
+            <h2 id={headingId}>从一帧开始，进入三种动画表达。</h2>
+          </div>
+          <p>影视、产品与地产动画作品节选。</p>
         </div>
-        <p>{isAnimation ? "影视、产品与地产动画作品节选。" : "每个方向独立展示，图册随素材逐步补齐。"}</p>
-      </div>
+      ) : (
+        <div className="service-film-rails-label">
+          <h2 id={headingId}>{service.englishTitle} / SERVICE ARCHIVES</h2>
+        </div>
+      )}
       <div className="service-film-rails-list">
         {galleryItems.map((item, index) => (
           <FilmRail item={item} index={index} key={item.slug} service={service} />

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { ContactBrief } from "@/components/contact-brief";
 import { locations, socialChannels } from "@/content/site";
 import { SiteFooter } from "@/components/site-footer";
@@ -27,7 +26,7 @@ export default async function ContactPage({
             <span>START / A NEW VIEW</span>
             <h1>从一个问题开始，<br />建立新的看法。</h1>
           </div>
-          <p>填写关键背景，页面会生成一份可复制的项目简报。晴蛙视觉在武汉、深圳、上海、北京、广州和云南设有联系点，正式发送前请核对具体对接渠道。</p>
+          <p>填写关键背景，页面会生成一份可复制的项目简报。晴蛙视觉在武汉、深圳、上海、广州和云南设有联系点，正式发送前请核对具体对接渠道。</p>
         </section>
         <section className="brief-section page-second-band" data-page-section="second" aria-labelledby="brief-heading">
           <div className="brief-heading">
@@ -57,7 +56,6 @@ export default async function ContactPage({
             <h3>官方内容渠道</h3>
             <div>{socialChannels.map((channel) => <span key={channel}>{channel}</span>)}</div>
           </div>
-          <Image className="contact-board" src="/contact/contact-board.jpg" alt="晴蛙视觉画册中的联系与服务覆盖信息" width={1800} height={1264} sizes="100vw" />
         </section>
       </main>
       <SiteFooter />

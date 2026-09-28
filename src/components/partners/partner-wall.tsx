@@ -17,7 +17,7 @@ export function HomePartnerWall() {
         </div>
         <div className="home-partner-wall-intro-en" lang="en">
           <strong>OUR CUSTOMERS</strong>
-          <span>{"Realize  innovation  needs  and  win  numerous  trust"}</span>
+          <span>Realize innovation needs and win numerous trust</span>
         </div>
       </div>
 
@@ -36,17 +36,7 @@ export function HomePartnerWall() {
       </div>
 
       <div className="home-partner-wall-note">
-        <p>以上仅为部分，排名不分先后，期待与您的相遇……</p>
-      </div>
-      <div className="home-partner-wall-copy">
-        <p>
-          晴蛙视觉科技在核心价值观“品质第一、用心服务、专注客户、稳健发展”的引导下，
-          不断创新，紧跟时代潮流。多元化的业务发展、行业内领先的
-        </p>
-        <p>
-          技术支持，使公司创造了一个又一个令人激动的成功案例，收获了大批忠实客户与商业合作伙伴，
-          开启了资源共享、合作共赢的新篇章……
-        </p>
+        <p>以上仅为部分，排名不分先后，期待与您的相遇…</p>
       </div>
     </section>
   );
@@ -128,14 +118,15 @@ export function PartnerWall() {
 
   return (
     <section className="partner-wall" aria-labelledby="partner-wall-heading">
-      <div className="partner-wall-heading">
-        <div>
-          <p className="partner-wall-kicker">OPEN NETWORK / 64 IMAGES</p>
-          <h2 id="partner-wall-heading">让合适的力量，在项目中相遇。</h2>
+      <div className="home-partner-wall-intro">
+        <div className="home-partner-wall-intro-cn">
+          <h2 id="partner-wall-heading">我们的客户</h2>
+          <p>实现创新需求，赢得众多信任</p>
         </div>
-        <p>
-          这里展示来自合作网络的企业视觉素材。图片按编号保留原貌，不对合作关系、企业名称或项目成果做额外推断。
-        </p>
+        <div className="home-partner-wall-intro-en" lang="en">
+          <strong>OUR CUSTOMERS</strong>
+          <span>Realize innovation needs and win numerous trust</span>
+        </div>
       </div>
 
       <div
@@ -233,6 +224,10 @@ export function PartnerWall() {
             />
           </button>
         ))}
+      </div>
+
+      <div className="home-partner-wall-note">
+        <p>以上仅为部分，排名不分先后，期待与您的相遇…</p>
       </div>
     </section>
   );

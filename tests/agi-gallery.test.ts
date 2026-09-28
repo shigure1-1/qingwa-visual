@@ -17,7 +17,7 @@ describe("AGI main gallery", () => {
       [2042, 1064],
       ...Array.from({ length: 16 }, () => [1000, 527]),
     ]);
-    expect(initiative?.galleryLayout).toBe("two-up");
+    expect(initiative?.galleryLayout).toBe("agi-spread");
   });
 
   it("keeps verified provenance next to every image", () => {

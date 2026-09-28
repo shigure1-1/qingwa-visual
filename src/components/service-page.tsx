@@ -1,15 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { CountUp } from "@/components/count-up";
 import { ProjectArt } from "@/components/project-art";
-import { ProjectStrip } from "@/components/project-strip";
 import { ServiceGallery } from "@/components/service-gallery";
 import { ServiceFilmRails } from "@/components/service-film-rails";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ServiceLocalNav } from "@/components/service-local-nav";
 import { ServiceHeroVideo } from "@/components/tourism-hero-video";
-import { projects, type Service, type ServiceItem } from "@/content/site";
+import { company, type Service, type ServiceItem } from "@/content/site";
 import { mediaUrl } from "@/lib/media-url";
 
 type ServicePageProps = {
@@ -57,12 +57,13 @@ const serviceSubnavBanners: Record<string, { src: string; alt: string }> = {
     src: "/services/digital-animation/detail-services-banner.jpg",
     alt: "影视动画服务横幅：一眼所见，从此不同，展示月夜水景中的动画场景",
   },
+  aigc: {
+    src: "/services/aigc/detail-services-banner.jpg",
+    alt: "AIGC 服务横幅：青蛙造型角色驾驶飞行器穿行于未来城市",
+  },
 };
 
 export function ServicePage({ service, item }: ServicePageProps) {
-  const relatedProjects = projects.filter((project) => project.category === service.category).slice(0, 3);
-  const currentIndex = item ? service.items.findIndex((candidate) => candidate.slug === item.slug) : -1;
-  const nextItem = item ? service.items[(currentIndex + 1) % service.items.length] : service.items[0];
   const title = item?.label ?? service.title;
   const description = item?.description ?? service.heroDescription;
   const eyebrow = item ? `${service.title} / SERVICE ITEM` : `${service.title} / SERVICE`;
@@ -83,7 +84,9 @@ export function ServicePage({ service, item }: ServicePageProps) {
         id="main-content"
       >
         <ServiceLocalNav service={service} currentItem={item?.slug} />
-        <section className="service-hero">
+        <section
+          className={`service-hero${heroVideo ? " service-hero-video-full" : !item ? " service-hero-static-art" : ""}`}
+        >
           <div className="service-hero-copy">
             {item && (
               <Link className="service-back" href={`/services/${service.slug}`}>
@@ -102,14 +105,7 @@ export function ServicePage({ service, item }: ServicePageProps) {
           </div>
           <div className={`service-hero-art${heroVideo ? " service-hero-art-tourism" : ""}`}>
             {heroVideo ? (
-              <>
-                <ProjectArt
-                  type={service.art}
-                  accent={service.accent}
-                  secondary={service.secondary}
-                />
-                <ServiceHeroVideo {...heroVideo} />
-              </>
+              <ServiceHeroVideo {...heroVideo} />
             ) : (
               <ProjectArt
                 type={service.art}
@@ -121,12 +117,23 @@ export function ServicePage({ service, item }: ServicePageProps) {
           </div>
         </section>
 
-        <section className="service-statement page-second-band" data-page-section="second">
-          <div>
-            <span>{item ? "SERVICE ITEM" : "SERVICE SYSTEM"}</span>
-            <h2>{item ? service.heroDescription : service.description}</h2>
+        <section className="proof-band page-second-band" data-page-section="second" aria-label={`${service.title}服务概览`}>
+          <div className="proof-band-intro">
+            <p className="proof-band-credentials">
+              <span>创新代数字化视觉服务商</span>
+              <span>综合数字影像全案供应商</span>
+              <span>百强地产优质视觉制作商</span>
+            </p>
+            <p className="proof-band-promise">持续多年为全球盛荟提供视觉服务</p>
           </div>
-          <p>以下内容是晴蛙视觉对服务方向的工作定义，具体范围、媒介和交付节点以项目沟通后的确认文件为准。</p>
+          <div className="proof-band-results">
+            <p>
+              深耕行业<CountUp value={company.years.replace("+", "")} />年，服务项目超<CountUp value={company.projectCount.replace("+", "")} suffix="+" />
+            </p>
+            <p>
+              案例遍布全国：<CountUp value={company.provinceCount} />个省<CountUp value={company.cityCount} />个城市
+            </p>
+          </div>
         </section>
 
         {gallery && (
@@ -144,31 +151,6 @@ export function ServicePage({ service, item }: ServicePageProps) {
         )}
 
         {!item && (
-          <section className="service-capabilities" aria-labelledby="service-capabilities-heading">
-            <div className="service-section-heading">
-              <span>CAPABILITY / FRAME</span>
-              <h2 id="service-capabilities-heading">从问题到现场，建立一套完整视角。</h2>
-            </div>
-            <ol>
-              {service.capabilities.map((capability, index) => (
-                <li key={capability}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <h3>{capability}</h3>
-                </li>
-              ))}
-            </ol>
-          </section>
-        )}
-
-        {item ? (
-          <section className="service-item-detail page-second-band" data-page-section="second" aria-labelledby="service-item-detail-heading">
-            <div>
-              <span>{service.title} / {item.label}</span>
-              <h2 id="service-item-detail-heading">把这个方向变成可观看、可沟通、可落地的内容。</h2>
-            </div>
-            <p>{item.description}</p>
-          </section>
-        ) : (
           <section
             className={`service-subnav${subnavBanner ? " service-subnav-with-banner" : ""}`}
             aria-labelledby="service-subnav-heading"
@@ -204,32 +186,6 @@ export function ServicePage({ service, item }: ServicePageProps) {
           </section>
         )}
 
-        {relatedProjects.length > 0 && (
-          <section className="service-projects" aria-labelledby="service-projects-heading">
-            <div className="service-section-heading split-heading">
-              <div>
-                <span>WORK / ARCHIVE</span>
-                <h2 id="service-projects-heading">相关代表项目</h2>
-              </div>
-              <p>这些项目按业务大类整理自晴蛙视觉画册。它们展示方向参考，不代表每个子服务均有对应的客户成果。</p>
-            </div>
-            <div className="project-list">
-              {relatedProjects.map((project, index) => (
-                <ProjectStrip key={project.slug} project={project} index={index} />
-              ))}
-            </div>
-            <Link className="text-link" href={`/work?category=${encodeURIComponent(service.category)}`}>
-              查看该类全部项目
-              <ArrowRight aria-hidden="true" />
-            </Link>
-          </section>
-        )}
-
-        <Link className="service-next" href={`/services/${service.slug}/${item ? nextItem.slug : service.items[0].slug}`}>
-          <span>{item ? "下一个服务方向" : "先从一个具体方向开始"}</span>
-          <strong>{item ? nextItem.label : service.items[0].label}</strong>
-          <ArrowRight aria-hidden="true" />
-        </Link>
       </main>
       <SiteFooter />
     </>

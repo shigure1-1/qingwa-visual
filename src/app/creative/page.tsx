@@ -38,10 +38,6 @@ export default function CreativePage() {
         </Link>
       </section>
       <CategoryGrid pageSection="second" />
-      <section className="creative-principle" aria-labelledby="creative-principle-heading">
-        <p>发布原则</p>
-        <h2 id="creative-principle-heading">只展示已经确认的商品信息，不用案例图片替代商品图，也不预设价格。</h2>
-      </section>
     </CreativeShell>
   );
 }

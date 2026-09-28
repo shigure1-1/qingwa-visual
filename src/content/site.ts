@@ -37,6 +37,7 @@ export type ContactLocation = {
 export type ServiceGalleryLayout =
   | "standard"
   | "two-up"
+  | "film-browser"
   | "featured-07-08"
   | "digital-twin-spread"
   | "agi-spread"
@@ -225,12 +226,6 @@ export const locations: ContactLocation[] = [
     address: "上海金山区山阳镇湾区文创汇",
     phone: "15900513406",
     email: "243509681@qq.com",
-  },
-  {
-    city: "北京",
-    address: "北京市顺义区信达路17号院4号楼",
-    phone: "027-8480 0688",
-    email: "546315992@qq.com",
   },
   {
     city: "广州",
@@ -430,9 +425,9 @@ export const services: Service[] = [
     secondary: "#111410",
     art: "spectrum",
     items: [
-      { label: "TVC", slug: "tvc", description: "为商业广告建立从创意、镜头语言到后期包装的短片表达。", gallery: tvcGallery, galleryLayout: "two-up" },
-      { label: "宣传片", slug: "promo-film", description: "梳理企业、城市或产品信息，以清晰的影像结构完成对外传播。", gallery: promoFilmGallery, galleryLayout: "two-up" },
-      { label: "微电影", slug: "micro-film", description: "以人物、情节和生活质感为核心，形成完整的短篇叙事影像。", gallery: microFilmGallery, galleryLayout: "film-sequence" },
+      { label: "TVC", slug: "tvc", description: "为商业广告建立从创意、镜头语言到后期包装的短片表达。", gallery: tvcGallery, galleryLayout: "film-browser" },
+      { label: "宣传片", slug: "promo-film", description: "梳理企业、城市或产品信息，以清晰的影像结构完成对外传播。", gallery: promoFilmGallery, galleryLayout: "film-browser" },
+      { label: "微电影", slug: "micro-film", description: "以人物、情节和生活质感为核心，形成完整的短篇叙事影像。", gallery: microFilmGallery, galleryLayout: "film-browser" },
     ],
   },
   {
@@ -448,9 +443,9 @@ export const services: Service[] = [
     secondary: "#12232b",
     art: "aperture",
     items: [
-      { label: "影视动画", slug: "film-animation", description: "以角色、场景和镜头运动承载影视内容中的世界观与叙事。", gallery: filmAnimationGallery, galleryLayout: "two-up" },
-      { label: "产品动画", slug: "product-animation", description: "拆解产品结构和功能，用动画建立易于理解的展示路径。", gallery: productAnimationGallery, galleryLayout: "two-up" },
-      { label: "地产动画", slug: "property-animation", description: "将建筑、社区和生活场景转译为具有空间感的地产视觉内容。", gallery: propertyAnimationGallery, galleryLayout: "two-up" },
+      { label: "影视动画", slug: "film-animation", description: "以角色、场景和镜头运动承载影视内容中的世界观与叙事。", gallery: filmAnimationGallery, galleryLayout: "film-browser" },
+      { label: "产品动画", slug: "product-animation", description: "拆解产品结构和功能，用动画建立易于理解的展示路径。", gallery: productAnimationGallery, galleryLayout: "film-browser" },
+      { label: "地产动画", slug: "property-animation", description: "将建筑、社区和生活场景转译为具有空间感的地产视觉内容。", gallery: propertyAnimationGallery, galleryLayout: "film-browser" },
       { label: "二维动画", slug: "2d-animation", description: "以图形、角色和节奏完成适合品牌传播与内容表达的二维动画。" },
     ],
   },

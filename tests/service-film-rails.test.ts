@@ -16,8 +16,8 @@ describe("digital film and animation service rails", () => {
     expect(railComponent).toContain("galleryItems.map");
     expect(railComponent).toContain("service-film-rail-copy");
     expect(railComponent).toContain("service-film-rail-media-window");
-    expect(pageComponent.indexOf('className="service-statement page-second-band"')).toBeLessThan(pageComponent.indexOf("<ServiceFilmRails service={service} />"));
-    expect(pageComponent.indexOf("<ServiceFilmRails service={service} />")).toBeLessThan(pageComponent.indexOf('className="service-capabilities"'));
+    expect(pageComponent.indexOf('className="proof-band page-second-band"')).toBeLessThan(pageComponent.indexOf("<ServiceFilmRails service={service} />"));
+    expect(pageComponent.indexOf("<ServiceFilmRails service={service} />")).toBeLessThan(pageComponent.indexOf("service-subnav"));
   });
 
   it("renders every available digital animation child gallery as its own slideshow", () => {
@@ -68,7 +68,7 @@ describe("digital film and animation service rails", () => {
     expect(globalStyles).toContain("grid-template-columns: minmax(0, 1.35fr) minmax(18rem, .65fr);");
     expect(globalStyles).toContain(".service-film-rail-copy {");
     expect(globalStyles).toContain("border-left: 1px solid var(--line-dark);");
-    expect(globalStyles).toContain(".service-film-rail {\n    grid-template-columns: 1fr;\n  }");
+    expect(globalStyles).toMatch(/\.service-film-rail \{\r?\n\s+grid-template-columns: 1fr;/);
     expect(globalStyles).toContain("prefers-reduced-motion");
     expect(globalStyles).toContain("scroll-behavior: auto;");
   });

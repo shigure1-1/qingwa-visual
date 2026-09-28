@@ -91,7 +91,7 @@ export function ServiceHeroVideo({
           alt={posterAlt}
           fill
           priority
-          sizes="(max-width: 900px) 100vw, 62vw"
+          sizes="100vw"
         />
         <span className="tourism-hero-video-reveal" aria-hidden="true">
           <video

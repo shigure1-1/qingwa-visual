@@ -21,13 +21,7 @@ export default function AboutPage() {
       <main className="inner-main" id="main-content">
         <AboutLocalNav />
         <div id="about-overview">
-          <section className="page-intro about-intro" data-team-photo="/about/personnel/team-photo.png">
-            <div className="about-intro-copy">
-              <span>ABOUT / QINGWA VISUAL</span>
-              <h1>先看见不同，<br />再让不同被看见。</h1>
-            </div>
-            <p>{company.summary} {company.englishName} 成立于 {company.established} 年，持续服务企业、政府、学校和文旅项目。</p>
-          </section>
+          <section className="page-intro about-intro" role="img" aria-label="晴蛙视觉团队合影" />
         </div>
 
         <section className="company-profile" aria-labelledby="company-profile-heading">
@@ -82,18 +76,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="about-belief page-second-band" data-page-section="second">
-          <p>视觉不是最后才加上的一层包装。</p>
-          <h2>它决定信息如何被理解，品牌如何被记住，以及一次观看能否留下变化。</h2>
-        </section>
-
-        <section className="about-personnel-band" id="about-personnel" aria-labelledby="about-personnel-heading">
-          <div>
-            <span>PEOPLE / IN PROGRESS</span>
-            <h2 id="about-personnel-heading">人员介绍</h2>
-          </div>
-        </section>
-
         <section className="about-honors" id="about-honors" aria-labelledby="about-honors-heading">
           <div className="about-section-heading">
             <span>RECOGNITION / TO VERIFY</span>
@@ -127,8 +109,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="about-close">
-          <h2>带着一个问题来，<br />我们一起找到它的视角。</h2>
+        <section className="about-close manifesto-section">
+          <h2>带着一个问题来，我们一起找到它的视角。</h2>
           <Link href="/contact">
             准备合作简报
             <ArrowRight aria-hidden="true" />

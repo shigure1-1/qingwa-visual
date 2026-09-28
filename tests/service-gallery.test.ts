@@ -14,7 +14,7 @@ type GalleryExpectation = {
   count: number;
   dimensions: Array<[number, number]>;
   sourceDirectory?: string;
-  layout: "standard" | "two-up" | "featured-07-08" | "film-sequence";
+  layout: "standard" | "two-up" | "featured-07-08" | "film-sequence" | "film-browser" | "digital-twin-spread";
 };
 
 const galleryExpectations: GalleryExpectation[] = [
@@ -48,7 +48,7 @@ const galleryExpectations: GalleryExpectation[] = [
       ...Array.from({ length: 4 }, () => [997, 526] as [number, number]),
     ],
     sourceDirectory: "Y:/1.制作项目/2026.08.25公司网站制作/1-3数字影视/3-1-3微电影",
-    layout: "film-sequence",
+    layout: "film-browser",
   },
   {
     serviceSlug: "digital-film",
@@ -57,7 +57,7 @@ const galleryExpectations: GalleryExpectation[] = [
     count: 10,
     dimensions: Array.from({ length: 10 }, () => [998, 526] as [number, number]),
     sourceDirectory: "Y:/1.制作项目/2026.08.25公司网站制作/1-3数字影视/3-1-1TVC",
-    layout: "two-up",
+    layout: "film-browser",
   },
   {
     serviceSlug: "digital-animation",
@@ -66,7 +66,7 @@ const galleryExpectations: GalleryExpectation[] = [
     count: 10,
     dimensions: Array.from({ length: 10 }, () => [999, 526] as [number, number]),
     sourceDirectory: "Y:/1.制作项目/2026.08.25公司网站制作/1-4数字动画/数字动画",
-    layout: "two-up",
+    layout: "film-browser",
   },
   {
     serviceSlug: "digital-animation",
@@ -75,7 +75,7 @@ const galleryExpectations: GalleryExpectation[] = [
     count: 10,
     dimensions: Array.from({ length: 10 }, () => [999, 526] as [number, number]),
     sourceDirectory: "Y:/1.制作项目/2026.08.25公司网站制作/1-4数字动画/产品动画",
-    layout: "two-up",
+    layout: "film-browser",
   },
   {
     serviceSlug: "digital-animation",
@@ -84,7 +84,7 @@ const galleryExpectations: GalleryExpectation[] = [
     count: 20,
     dimensions: Array.from({ length: 20 }, () => [999, 527] as [number, number]),
     sourceDirectory: "Y:/1.制作项目/2026.08.25公司网站制作/1-4数字动画/地产动画",
-    layout: "two-up",
+    layout: "film-browser",
   },
   {
     serviceSlug: "digital-twin",
@@ -96,7 +96,7 @@ const galleryExpectations: GalleryExpectation[] = [
       [2046, 1089],
     ],
     sourceDirectory: "Y:/1.制作项目/2026.08.25公司网站制作/1-5数字孪生/数字孪生",
-    layout: "two-up",
+    layout: "digital-twin-spread",
   },
   {
     serviceSlug: "aigc",

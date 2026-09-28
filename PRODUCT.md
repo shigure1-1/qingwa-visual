@@ -30,7 +30,7 @@ Qingwa Visual uses a faceted viewing language to turn a change in perspective in
 - The booklet identifies three company entities: 武汉晴蛙视觉科技有限公司, 武汉晴蛙设计工程有限公司, and 广州晴蛙传媒科技有限公司.
 - The booklet records a 2024 high-tech enterprise recognition, technology SME recognition, a broadcast and television program production license, and other certificate/software-patent pages. Exact certificate wording should be confirmed before legal or tender use.
 - No client-specific performance claims, award claims, testimonials, project budgets, or delivery outcomes may be invented. Case descriptions remain factual summaries of the supplied booklet and should be approved item by item for publication.
-- Contact information is transcribed from the supplied booklet's final page. Re-confirm phone numbers, email addresses, physical addresses, and social handles before launch; the Beijing entry's `027` telephone area code requires particular confirmation.
+- Contact information is transcribed from the supplied booklet's final page. Re-confirm phone numbers, email addresses, physical addresses, and social handles before launch.
 
 ## Brand Commitments
 

@@ -488,28 +488,6 @@
   transform: translate(0.2rem, -0.2rem);
 }
 
-.creative-principle {
-  display: grid;
-  grid-template-columns: minmax(10rem, 0.35fr) minmax(0, 1.65fr);
-  gap: 3rem;
-  padding: 7rem var(--page-pad);
-  color: var(--white);
-  background: var(--teal-deep);
-}
-
-.creative-principle > p {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.78rem;
-}
-
-.creative-principle h2 {
-  max-width: 22ch;
-  font-size: 3.55rem;
-  font-weight: 650;
-  line-height: 1.16;
-  text-wrap: balance;
-}
-
 .creative-category-hero {
   min-height: 39rem;
   display: grid;
@@ -1331,7 +1309,6 @@
   }
 
   .creative-section-heading,
-  .creative-principle,
   .creative-category-hero,
   .creative-product-detail,
   .creative-commerce-layout {
@@ -1349,14 +1326,6 @@
   .creative-category-grid,
   .creative-product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .creative-principle {
-    gap: 1.5rem;
-  }
-
-  .creative-principle h2 {
-    font-size: 3rem;
   }
 
   .creative-category-hero > div:first-child {
@@ -1450,7 +1419,6 @@
   }
 
   .creative-section-heading h2,
-  .creative-principle h2,
   .creative-empty-state h2 {
     font-size: 2.6rem;
   }
@@ -1462,11 +1430,6 @@
 
   .creative-category-copy {
     min-height: 12rem;
-  }
-
-  .creative-principle {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
   }
 
   .creative-category-hero > div:first-child {

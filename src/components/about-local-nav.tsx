@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 export const aboutSections = [
   { href: "#about-overview", label: "关于我们" },
   { href: "#about-history", label: "发展历程" },
-  { href: "#about-personnel", label: "人员介绍" },
   { href: "#about-honors", label: "企业荣誉" },
 ] as const;
 
