@@ -28,11 +28,11 @@ export function ServiceHeroVideo({
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   const openVideo = () => {
-    const hero = triggerRef.current?.closest<HTMLElement>(".service-hero");
-    if (!hero) return;
+    const host = triggerRef.current?.closest<HTMLElement>("[data-video-host]");
+    if (!host) return;
 
     previewRef.current?.pause();
-    setOverlayHost(hero);
+    setOverlayHost(host);
     setOpen(true);
   };
 
@@ -83,7 +83,7 @@ export function ServiceHeroVideo({
         onClick={openVideo}
         onPointerEnter={startPreview}
         onPointerLeave={stopPreview}
-        aria-label={`在首栏播放${ariaLabel}`}
+        aria-label={`播放${ariaLabel}`}
       >
         <Image
           className="tourism-hero-video-poster tourism-hero-video-poster-base"

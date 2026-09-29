@@ -29,6 +29,7 @@ export type Project = {
 
 export type ContactLocation = {
   city: string;
+  englishLabel: string;
   address: string;
   phone: string;
   email?: string;
@@ -206,35 +207,41 @@ export const company = {
 export const locations: ContactLocation[] = [
   {
     city: "武汉 · 汉阳",
+    englishLabel: "WUHAN / HANYANG",
     address: "武汉市汉阳区万隆城市广场805",
     phone: "15717150315",
     email: "546315992@qq.com",
   },
   {
     city: "武汉 · 光谷",
+    englishLabel: "WUHAN / GUANGGU",
     address: "湖北省武汉市东湖新技术开发区国际企业中心三期1栋3层04号C131",
     phone: "15717150315",
   },
   {
     city: "深圳",
+    englishLabel: "SHENZHEN",
     address: "深圳市罗湖区南湖街道新南社区",
     phone: "15335894300",
     email: "344837310@qq.com",
   },
   {
     city: "上海",
+    englishLabel: "SHANGHAI",
     address: "上海金山区山阳镇湾区文创汇",
     phone: "15900513406",
     email: "243509681@qq.com",
   },
   {
     city: "广州",
+    englishLabel: "GUANGZHOU",
     address: "广州市白云区广园中路151号4123房",
     phone: "13699746685",
     email: "510756286@qq.com",
   },
   {
     city: "云南 · 昆明",
+    englishLabel: "KUNMING",
     address: "云南省昆明市盘龙区新希望·锦麟峯荟二期",
     phone: "13407175779",
     email: "510756286@qq.com",

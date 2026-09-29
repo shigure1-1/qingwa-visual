@@ -9,6 +9,7 @@ import styles from "./partner-network-map.module.css";
 
 type ContactLocation = {
   city: string;
+  englishLabel: string;
   address: string;
   phone: string;
   email?: string;
@@ -38,6 +39,7 @@ type MapFeatureCollection = {
 type CityNode = {
   id: string;
   name: string;
+  englishName: string;
   longitude: number;
   latitude: number;
   labelOffsetX: number;
@@ -50,12 +52,24 @@ const MAP_SCALE = 0.72;
 const CAMERA_HOME = new THREE.Vector3(0, -31, 48);
 const CAMERA_TARGET = new THREE.Vector3(0, 0, 0);
 
+const MAP_COLORS = {
+  fog: 0x06121f,
+  province: [0x185a99, 0x226eb1, 0x2e81c5],
+  edge: 0x9ed4ff,
+  marker: 0x55b6ff,
+  markerEmissive: 0x123a70,
+  node: 0x9edbff,
+  nodeEmissive: 0x245d94,
+  rim: 0x3385d8,
+  underlay: 0x071625,
+} as const;
+
 const CITY_BLUEPRINTS = [
-  { id: "wuhan", name: "武汉", match: "武汉", longitude: 114.3055, latitude: 30.5928, labelOffsetX: -18, labelOffsetY: -8 },
-  { id: "shenzhen", name: "深圳", match: "深圳", longitude: 114.0579, latitude: 22.5431, labelOffsetX: 44, labelOffsetY: 18 },
-  { id: "shanghai", name: "上海", match: "上海", longitude: 121.4737, latitude: 31.2304, labelOffsetX: 22, labelOffsetY: -8 },
-  { id: "guangzhou", name: "广州", match: "广州", longitude: 113.2644, latitude: 23.1291, labelOffsetX: -42, labelOffsetY: -15 },
-  { id: "kunming", name: "昆明", match: "昆明", longitude: 102.8329, latitude: 24.8801, labelOffsetX: -20, labelOffsetY: 8 },
+  { id: "wuhan", name: "武汉", englishName: "WUHAN", match: "武汉", longitude: 114.3055, latitude: 30.5928, labelOffsetX: -18, labelOffsetY: -8 },
+  { id: "shenzhen", name: "深圳", englishName: "SHENZHEN", match: "深圳", longitude: 114.0579, latitude: 22.5431, labelOffsetX: 44, labelOffsetY: 18 },
+  { id: "shanghai", name: "上海", englishName: "SHANGHAI", match: "上海", longitude: 121.4737, latitude: 31.2304, labelOffsetX: 22, labelOffsetY: -8 },
+  { id: "guangzhou", name: "广州", englishName: "GUANGZHOU", match: "广州", longitude: 113.2644, latitude: 23.1291, labelOffsetX: -42, labelOffsetY: -15 },
+  { id: "kunming", name: "昆明", englishName: "KUNMING", match: "昆明", longitude: 102.8329, latitude: 24.8801, labelOffsetX: -20, labelOffsetY: 8 },
 ] as const;
 
 function projectCoordinate(longitude: number, latitude: number) {
@@ -104,7 +118,7 @@ function createProvinceMeshes(feature: MapFeature, index: number) {
       curveSegments: 1,
     });
     const material = new THREE.MeshStandardMaterial({
-      color: index % 3 === 0 ? 0x2f8d91 : index % 3 === 1 ? 0x3ca4a8 : 0x287b80,
+      color: MAP_COLORS.province[index % MAP_COLORS.province.length],
       metalness: .18,
       roughness: .62,
     });
@@ -115,7 +129,7 @@ function createProvinceMeshes(feature: MapFeature, index: number) {
 
     const edges = new THREE.LineSegments(
       new THREE.EdgesGeometry(geometry, 18),
-      new THREE.LineBasicMaterial({ color: 0x9fe4e5, transparent: true, opacity: .32 }),
+      new THREE.LineBasicMaterial({ color: MAP_COLORS.edge, transparent: true, opacity: .36 }),
     );
     provinceGroup.add(edges);
   });
@@ -130,7 +144,7 @@ function createNetworkMarker(node: CityNode, index: number) {
 
   const stem = new THREE.Mesh(
     new THREE.CylinderGeometry(.055, .095, .8, 12),
-    new THREE.MeshStandardMaterial({ color: 0xff6d5a, emissive: 0x522018, emissiveIntensity: .4 }),
+    new THREE.MeshStandardMaterial({ color: MAP_COLORS.marker, emissive: MAP_COLORS.markerEmissive, emissiveIntensity: .4 }),
   );
   stem.rotation.x = Math.PI / 2;
   stem.position.z = .36;
@@ -138,13 +152,13 @@ function createNetworkMarker(node: CityNode, index: number) {
 
   const cap = new THREE.Mesh(
     new THREE.SphereGeometry(.16, 16, 12),
-    new THREE.MeshStandardMaterial({ color: 0xd8ff43, emissive: 0x40510e, emissiveIntensity: .65 }),
+    new THREE.MeshStandardMaterial({ color: MAP_COLORS.node, emissive: MAP_COLORS.nodeEmissive, emissiveIntensity: .65 }),
   );
   cap.position.z = .78;
   group.add(cap);
 
   const ringMaterial = new THREE.MeshBasicMaterial({
-    color: 0xd8ff43,
+    color: MAP_COLORS.node,
     transparent: true,
     opacity: .42,
     side: THREE.DoubleSide,
@@ -171,6 +185,7 @@ export function PartnerNetworkMap({ locations }: PartnerNetworkMapProps) {
   const cityNodes = useMemo<CityNode[]>(() => CITY_BLUEPRINTS.map((blueprint) => ({
     id: blueprint.id,
     name: blueprint.name,
+    englishName: blueprint.englishName,
     longitude: blueprint.longitude,
     latitude: blueprint.latitude,
     labelOffsetX: blueprint.labelOffsetX,
@@ -190,7 +205,7 @@ export function PartnerNetworkMap({ locations }: PartnerNetworkMapProps) {
     let isVisible = true;
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x070908, 42, 83);
+    scene.fog = new THREE.Fog(MAP_COLORS.fog, 42, 83);
 
     let renderer: THREE.WebGLRenderer;
     try {
@@ -237,7 +252,7 @@ export function PartnerNetworkMap({ locations }: PartnerNetworkMapProps) {
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.set(1024, 1024);
     scene.add(keyLight);
-    const rimLight = new THREE.DirectionalLight(0xff6d5a, 1.15);
+    const rimLight = new THREE.DirectionalLight(MAP_COLORS.rim, 1.15);
     rimLight.position.set(22, 12, 18);
     scene.add(rimLight);
 
@@ -260,7 +275,7 @@ export function PartnerNetworkMap({ locations }: PartnerNetworkMapProps) {
 
     const underlay = new THREE.Mesh(
       new THREE.PlaneGeometry(53, 35),
-      new THREE.MeshBasicMaterial({ color: 0x06110f, transparent: true, opacity: .58, side: THREE.DoubleSide }),
+      new THREE.MeshBasicMaterial({ color: MAP_COLORS.underlay, transparent: true, opacity: .62, side: THREE.DoubleSide }),
     );
     underlay.position.set(-1.2, 1.1, -.24);
     scene.add(underlay);
@@ -394,9 +409,11 @@ export function PartnerNetworkMap({ locations }: PartnerNetworkMapProps) {
   return (
     <section className={styles.section} id="partner-network" aria-labelledby="partner-network-heading">
       <div className={styles.heading}>
-        <h2 id="partner-network-heading">全国协作网络</h2>
-        <p>
+        <div className={styles.headingCopy}>
+          <h2 id="partner-network-heading">全国协作网络</h2>
           <span className={styles.headingMeta} lang="en">NETWORK / LOCATIONS</span>
+        </div>
+        <p>
           以武汉为连接点，协同深圳、上海、广州与昆明的区域团队。选择地图标注，查看现有联系地点与沟通方式。
         </p>
       </div>
@@ -474,7 +491,10 @@ export function PartnerNetworkMap({ locations }: PartnerNetworkMapProps) {
                 onKeyDown={(event) => handleCityTabKeyDown(event, index)}
               >
                 <small>{String(index + 1).padStart(2, "0")}</small>
-                <strong>{node.name}</strong>
+                <span className={styles.cityLabels}>
+                  <span className={styles.cityEnglish} lang="en">{node.englishName}</span>
+                  <strong>{node.name}</strong>
+                </span>
               </button>
             ))}
           </div>
@@ -494,7 +514,10 @@ export function PartnerNetworkMap({ locations }: PartnerNetworkMapProps) {
                 <article className={styles.location} key={`${location.city}-${location.address}`}>
                   <span className={styles.locationIndex}>{String(index + 1).padStart(2, "0")}</span>
                   <div className={styles.locationBody}>
-                    <strong>{location.city}</strong>
+                    <div className={styles.locationHeading}>
+                      <span className={styles.locationEnglish} lang="en">{location.englishLabel}</span>
+                      <strong>{location.city}</strong>
+                    </div>
                     <span className={styles.contactLine}>
                       <MapPin aria-hidden="true" />
                       <span>{location.address}</span>

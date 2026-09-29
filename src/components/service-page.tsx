@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { CountUp } from "@/components/count-up";
 import { ProjectArt } from "@/components/project-art";
 import { ServiceGallery } from "@/components/service-gallery";
-import { ServiceFilmRails } from "@/components/service-film-rails";
+import { ServiceFilmWall } from "@/components/service-film-wall";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ServiceLocalNav } from "@/components/service-local-nav";
@@ -84,38 +84,50 @@ export function ServicePage({ service, item }: ServicePageProps) {
         id="main-content"
       >
         <ServiceLocalNav service={service} currentItem={item?.slug} />
-        <section
-          className={`service-hero${heroVideo ? " service-hero-video-full" : !item ? " service-hero-static-art" : ""}`}
-        >
-          <div className="service-hero-copy">
-            {item && (
-              <Link className="service-back" href={`/services/${service.slug}`}>
-                <ArrowLeft aria-hidden="true" />
-                返回{service.title}
+        {!item && subnavBanner ? (
+          <section
+            className="service-hero service-hero-banner"
+            data-service={service.slug}
+            aria-labelledby="service-hero-heading"
+          >
+            <h1 className="visually-hidden" id="service-hero-heading">{title}</h1>
+            <Image
+              src={subnavBanner.src}
+              alt={subnavBanner.alt}
+              fill
+              priority
+              sizes="100vw"
+              unoptimized
+            />
+          </section>
+        ) : (
+          <section className={`service-hero${!item ? " service-hero-static-art" : ""}`}>
+            <div className="service-hero-copy">
+              {item && (
+                <Link className="service-back" href={`/services/${service.slug}`}>
+                  <ArrowLeft aria-hidden="true" />
+                  返回{service.title}
+                </Link>
+              )}
+              <span className="service-eyebrow">{eyebrow}</span>
+              <h1>{title}</h1>
+              <p className="service-english">{service.englishTitle}</p>
+              <p className="service-summary">{description}</p>
+              <Link className="service-action" href={`/contact?topic=${encodeURIComponent(service.title)}`}>
+                讨论一个项目
+                <ArrowRight aria-hidden="true" />
               </Link>
-            )}
-            <span className="service-eyebrow">{eyebrow}</span>
-            <h1>{title}</h1>
-            <p className="service-english">{item ? service.englishTitle : service.englishTitle}</p>
-            <p className="service-summary">{description}</p>
-            <Link className="service-action" href={`/contact?topic=${encodeURIComponent(service.title)}`}>
-              讨论一个项目
-              <ArrowRight aria-hidden="true" />
-            </Link>
-          </div>
-          <div className={`service-hero-art${heroVideo ? " service-hero-art-tourism" : ""}`}>
-            {heroVideo ? (
-              <ServiceHeroVideo {...heroVideo} />
-            ) : (
+            </div>
+            <div className="service-hero-art">
               <ProjectArt
                 type={service.art}
                 accent={service.accent}
                 secondary={service.secondary}
                 title={title}
               />
-            )}
-          </div>
-        </section>
+            </div>
+          </section>
+        )}
 
         <section className="proof-band page-second-band" data-page-section="second" aria-label={`${service.title}服务概览`}>
           <div className="proof-band-intro">
@@ -136,8 +148,19 @@ export function ServicePage({ service, item }: ServicePageProps) {
           </div>
         </section>
 
+        {heroVideo && (
+          <section
+            className="service-showreel"
+            data-video-host
+            aria-label={heroVideo.ariaLabel}
+          >
+            <ServiceHeroVideo {...heroVideo} />
+          </section>
+        )}
+
         {gallery && (
           <ServiceGallery
+            browserVariant={item && service.slug === "digital-film" ? "four-up-disclosure" : undefined}
             eyebrow={galleryEyebrow}
             gallery={gallery}
             headingId={galleryHeadingId}
@@ -147,26 +170,16 @@ export function ServicePage({ service, item }: ServicePageProps) {
         )}
 
         {!item && (service.slug === "digital-film" || service.slug === "digital-animation") && (
-          <ServiceFilmRails service={service} />
+          <ServiceFilmWall service={service} />
         )}
 
         {!item && (
           <section
-            className={`service-subnav${subnavBanner ? " service-subnav-with-banner" : ""}`}
+            className={`service-subnav${subnavBanner ? " service-subnav-compact" : ""}`}
             aria-labelledby="service-subnav-heading"
           >
             {subnavBanner ? (
-              <div className="service-subnav-banner" data-service={service.slug}>
-                <h2 className="visually-hidden" id="service-subnav-heading">{service.title}服务方向</h2>
-                <Image
-                  src={subnavBanner.src}
-                  alt={subnavBanner.alt}
-                  width={1920}
-                  height={520}
-                  sizes="calc(100vw - 2 * var(--page-pad))"
-                  unoptimized
-                />
-              </div>
+              <h2 className="visually-hidden" id="service-subnav-heading">{service.title}服务方向</h2>
             ) : (
               <div className="service-section-heading">
                 <span>DETAIL / SERVICES</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import type { ServiceGalleryItem } from "@/content/site";
@@ -9,6 +9,7 @@ import type { ServiceGalleryItem } from "@/content/site";
 type FilmGalleryBrowserProps = {
   gallery: ServiceGalleryItem[];
   title: string;
+  variant?: "standard" | "four-up-disclosure";
 };
 
 const englishTitles: Record<string, string> = {
@@ -20,8 +21,9 @@ const englishTitles: Record<string, string> = {
   "地产动画": "PROPERTY ANIMATION",
 };
 
-export function FilmGalleryBrowser({ gallery, title }: FilmGalleryBrowserProps) {
+export function FilmGalleryBrowser({ gallery, title, variant = "standard" }: FilmGalleryBrowserProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
@@ -106,7 +108,7 @@ export function FilmGalleryBrowser({ gallery, title }: FilmGalleryBrowserProps) 
   const activeImage = activeIndex === null ? null : gallery[activeIndex];
 
   return (
-    <div className="film-gallery-browser">
+    <div className="film-gallery-browser" data-layout={variant}>
       <div className="film-gallery-card-grid" aria-label={`${title}交互卡片图集`}>
         {gallery.map((image, index) => {
           const frame = String(index + 1).padStart(2, "0");
@@ -129,7 +131,9 @@ export function FilmGalleryBrowser({ gallery, title }: FilmGalleryBrowserProps) 
                     width={image.width}
                     height={image.height}
                     quality={82}
-                    sizes="(max-width: 580px) 100vw, 50vw"
+                    sizes={variant === "four-up-disclosure"
+                      ? "(max-width: 580px) 100vw, (max-width: 900px) 50vw, 25vw"
+                      : "(max-width: 580px) 100vw, 50vw"}
                   />
                   <span className="film-gallery-card-shade" aria-hidden="true" />
                   <span className="film-gallery-card-open" aria-hidden="true">
@@ -138,13 +142,42 @@ export function FilmGalleryBrowser({ gallery, title }: FilmGalleryBrowserProps) 
                 </span>
               </button>
 
-              <div className="film-gallery-card-meta">
-                <div>
-                  <strong>{title} · 镜头 {frame}</strong>
-                  <span>{englishTitle}</span>
+              {variant === "four-up-disclosure" ? (
+                <div className={`film-gallery-card-disclosure${expandedIndex === index ? " is-expanded" : ""}`}>
+                  <button
+                    className="film-gallery-card-disclosure-trigger"
+                    type="button"
+                    aria-expanded={expandedIndex === index}
+                    aria-controls={`film-gallery-card-panel-${index}`}
+                    onClick={() => setExpandedIndex((current) => current === index ? null : index)}
+                  >
+                    <span>FRAME {frame}</span>
+                    <strong>作品信息</strong>
+                    <ChevronDown aria-hidden="true" />
+                  </button>
+                  <div
+                    className="film-gallery-card-disclosure-panel"
+                    id={`film-gallery-card-panel-${index}`}
+                    aria-hidden={expandedIndex !== index}
+                  >
+                    <div className="film-gallery-card-disclosure-content">
+                      <div className="film-gallery-card-disclosure-copy">
+                        <strong>{title} · 镜头 {frame}</strong>
+                        <span>{englishTitle}</span>
+                        <p>{image.alt}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <span>FRAME {frame}</span>
-              </div>
+              ) : (
+                <div className="film-gallery-card-meta">
+                  <div>
+                    <strong>{title} · 镜头 {frame}</strong>
+                    <span>{englishTitle}</span>
+                  </div>
+                  <span>FRAME {frame}</span>
+                </div>
+              )}
             </article>
           );
         })}

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { mediaUrl } from "@/lib/media-url";
 
@@ -12,6 +11,7 @@ export function CompanyFilm() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasSnappedRef = useRef(false);
   const [posterSrc, setPosterSrc] = useState(desktopPoster);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const mobileQuery = window.matchMedia("(max-width: 900px)");
@@ -86,28 +86,12 @@ export function CompanyFilm() {
   }, []);
 
   return (
-    <section className="company-film" aria-labelledby="company-film-heading">
-      <div className="company-film-copy">
-        <div className="company-film-heading-row">
-          <div className="company-film-heading-copy">
-            <span className="company-film-eyebrow">QINGWA VISUAL / SHOWREEL</span>
-            <h2 id="company-film-heading">服务当下，影响未来。</h2>
-          </div>
-          <div className="company-film-brand-meta">
-            <Image
-              className="company-film-logo"
-              src="/brand/qingwa-lockup-2026-cropped.webp"
-              alt="晴蛙视觉企业标识"
-              width={1304}
-              height={292}
-              sizes="(max-width: 580px) 28vw, (max-width: 900px) 22vw, 13rem"
-            />
-            <time dateTime="2026">2026</time>
-          </div>
+    <section className="company-film" aria-label="晴蛙视觉 2023 企业宣传片">
+      <div className="company-film-player" ref={playerRef} data-playing={isPlaying}>
+        <div className="company-film-overlay" aria-hidden={isPlaying}>
+          <span>QINGWA VISUAL / SHOWREEL</span>
+          <time dateTime="2023">2023</time>
         </div>
-        <p>晴蛙视觉企业宣传片，记录我们从空间、影像到数字内容的观看方式。</p>
-      </div>
-      <div className="company-film-player" ref={playerRef}>
         <video
           ref={videoRef}
           controls
@@ -116,6 +100,9 @@ export function CompanyFilm() {
           preload="metadata"
           poster={posterSrc}
           aria-label="晴蛙视觉企业宣传片"
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          onEnded={() => setIsPlaying(false)}
         >
           <source
             media="(max-width: 900px)"

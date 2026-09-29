@@ -3,6 +3,7 @@ import { FilmGalleryBrowser } from "@/components/film-gallery-browser";
 import type { ServiceGalleryItem, ServiceGalleryLayout } from "@/content/site";
 
 type ServiceGalleryProps = {
+  browserVariant?: "standard" | "four-up-disclosure";
   gallery: ServiceGalleryItem[];
   eyebrow: string;
   headingId: string;
@@ -10,7 +11,7 @@ type ServiceGalleryProps = {
   title: string;
 };
 
-export function ServiceGallery({ gallery, eyebrow, headingId, layout = "standard", title }: ServiceGalleryProps) {
+export function ServiceGallery({ browserVariant, gallery, eyebrow, headingId, layout = "standard", title }: ServiceGalleryProps) {
   return (
     <section className="service-gallery" data-gallery-layout={layout} aria-labelledby={headingId}>
       <div className="service-gallery-heading">
@@ -22,7 +23,7 @@ export function ServiceGallery({ gallery, eyebrow, headingId, layout = "standard
       </div>
       <div className="service-gallery-body">
         {layout === "film-browser" ? (
-          <FilmGalleryBrowser gallery={gallery} title={title} />
+          <FilmGalleryBrowser gallery={gallery} title={title} variant={browserVariant} />
         ) : (
           <div className="service-gallery-grid">
             {gallery.map((image, index) => {

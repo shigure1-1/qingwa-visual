@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { HomeHeroSlideshow } from "@/components/home-hero-slideshow";
 import { ProjectStrip } from "@/components/project-strip";
@@ -57,18 +56,8 @@ export default function Home() {
           </Link>
         </section>
 
-        <section className="services-section" aria-labelledby="services-heading">
+        <section className="services-section" id="services" aria-labelledby="services-heading">
           <h2 className="visually-hidden" id="services-heading">服务体系</h2>
-          <div className="services-banner">
-            <Image
-              src="/home/mana.jpg"
-              alt="晴蛙视觉服务横幅：服务当下，影响未来；影视动画、影视广告、数字文旅、数字展厅、智能数字研究院"
-              width={1920}
-              height={333}
-              sizes="100vw"
-              unoptimized
-            />
-          </div>
           <HomeServiceShowcase services={services} />
         </section>
 
